@@ -424,7 +424,8 @@ server <- function(input, output, session){
       #             group = "Nombre de jours annuels estivaux") %>%
 
   
-  observe({
+ 
+    
     # req(input$dpt)
     # leafletProxy("map")%>%
     #   clearShapes()
@@ -452,15 +453,29 @@ server <- function(input, output, session){
     # }
     # leafletProxy("map") %>%
     #   clearControls()#%>%
-      
-    
+          
+          
+          w <- Waiter$new(
+            html = tagList(spin_3circles(),
+                           h3("Chargement de la couche en cours...",
+                              style="color:#464924;letter-spacing: 0.109em;font-size:1.3em;")
+                           ),
+            color = transparent(.5),
+            id="map",
+              hide_on_render = TRUE
+          )
+          
+          
+  observe({
     # Cartes spécifiques
     if ("Température (en °C) en été à l'échelle Départementale" %in% input$map_groups) {
+     w$show()
+      Sys.sleep(3)
       leafletProxy("map") %>%
         clearShapes()%>%
         clearControls()%>%
-        # hideGroup("Région")%>%
-        # removeShape("Département")%>%
+         removeShape("Région")%>%
+         removeShape("Département")%>%
         addSidebyside(layerId = "sidecontrols", rightId = "baseid", leftId = "cartoid") %>%
       addPolygons(data = departement_donnees,
                   fillColor = ~pal_dpt_ete(departement_donnees$T_ete._haute_cat),
@@ -494,7 +509,9 @@ server <- function(input, output, session){
                   title = "Température estivale en °C",
                   group = "Température (en °C) en été à l'échelle Départementale",
                   opacity = 1,
-                  layerId = "legend2") #%>%
+                  layerId = "legend2")
+      
+      w$hide()
       
       # addLayerToMap("bottomright",~pal_dpt_ete(departement_donnees$T_ete._haute_cat), departement_donnees, labels_ete, "Température estivale en °C",
       #               c("#d9d9d9", "#ffffff", "#ffaaaa", "#ff5555", "#ff0000"),
@@ -508,9 +525,13 @@ server <- function(input, output, session){
     }
     
      else if ("Température (en °C) automnale à l'échelle Départementale" %in% input$map_groups) {
+       w$show()
+       Sys.sleep(3)
        leafletProxy("map") %>%
          clearShapes()%>%
          clearControls()%>%
+         removeShape("Région")%>%
+         removeShape("Département")%>%
          addSidebyside(layerId = "sidecontrols", rightId = "baseid", leftId = "cartoid") %>%
        addPolygons(data = departement_donnees,
                    fillColor = ~pal_dpt_automne(departement_donnees$T_.Automne_haute_cat),
@@ -544,12 +565,18 @@ server <- function(input, output, session){
                    group = "Température (en °C) automnale à l'échelle Départementale",
                    opacity = 1,
                    layerId = "legend4")
+       
+       w$hide()
      }
     
     else if("Température (en °C) au printemps à l'échelle Départementale" %in% input$map_groups){
+      w$show()
+      Sys.sleep(3)
       leafletProxy("map") %>%
         clearShapes()%>%
         clearControls()%>%
+        removeShape("Région")%>%
+        removeShape("Département")%>%
         addSidebyside(layerId = "sidecontrols", rightId = "baseid", leftId = "cartoid") %>%
       addPolygons(data = departement_donnees,
                   fillColor = ~pal_dpt_printemps(departement_donnees$T_printemps_haute_cat), #fill = F,
@@ -581,12 +608,18 @@ server <- function(input, output, session){
                   title = "Température printanière en °C ",
                   group = "Température (en °C) au printemps à l'échelle Départementale",
                   opacity = 1)
+      
+      w$hide()
     }
     
     else if("Température (en °C) en hiver à l'échelle Départementale" %in% input$map_groups){
+      w$show()
+      Sys.sleep(3)
       leafletProxy("map") %>%
         clearShapes()%>%
         clearControls()%>%
+        removeShape("Région")%>%
+        removeShape("Département")%>%
         addSidebyside(layerId = "sidecontrols", rightId = "baseid", leftId = "cartoid") %>%
       addPolygons(data = departement_donnees,
                   fillColor = ~pal_dpt_hiver_ref(departement_donnees$T_hiver_ref_cat), #fill = F,
@@ -616,6 +649,8 @@ server <- function(input, output, session){
                   labels = c("de 3.0 à 4.0 inclus","de 4.0 à 4.5 inclus","de 4.5 à 5.0 inclus","de 5.0 à 5.5 inclus","de 5.5 à 6.0 inclus","> 6.0"), 
                   title = "Température hivernale en °C ",
                   group = "Température (en °C) en hiver à l'échelle Départementale", opacity = 1)
+      
+      w$hide()
     }
     #   addLayerToMap("bottomright",~pal_dpt_automne(departement_donnees$T_.Automne_haute_cat), departement_donnees, labels_automne, "Température automnale en °C",
     #                 c("#ffffff", "#eda166", "#cea42b", "#8c4309"),

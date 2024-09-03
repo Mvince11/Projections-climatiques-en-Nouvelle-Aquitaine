@@ -226,6 +226,12 @@ html, body {
         opacity: 1;
       }
 
+.waiter-overlay {
+   position: absolute;
+  top: 50% !important;     /* Centrer verticalement */
+  left: 50% !important;    /* Centrer horizontalement */
+  transform: translate(-50%, -50%) !important;  /* Ajuster pour un vrai centrage */
+}
 
 @media only screen and (max-width:1300px) {
 .diagramme_circulaire{
