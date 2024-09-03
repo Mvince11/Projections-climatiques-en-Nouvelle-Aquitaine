@@ -1,0 +1,11 @@
+name: projections-climatiques-en-nouvelle-aquitaine
+title: Projections-climatiques-en-Nouvelle-Aquitaine
+username:
+account: applis-web
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12489965
+bundleId: 9055347
+url: https://applis-web.shinyapps.io/projections-climatiques-en-nouvelle-aquitaine/
+when: 1725347713.92632
+lastSyncTime: 1725347713.92632
