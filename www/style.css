@@ -1,0 +1,245 @@
+.navbar-default {
+  background-color: white;/*#353437;*/    /*#b56b48;*/
+  margin-right:-20px;
+  margin-left:-20px;
+                }
+                   
+.navbar-default,.navbar-brand {
+  color: #3a4999 !important;
+  height:143px;
+              }
+                   
+.title {
+  display: flex;
+  justify-content: center;
+        }
+ 
+ .semi-circle {
+        left: 30rem;
+    position: absolute;
+    top: -4rem;
+    height: 18.2rem;
+    width: 18.2rem;
+    background-color: #fff;
+    border-radius: 50%;
+    content: '';
+    z-index: -1;
+      }
+      
+ label {
+   font-weight: inherit;
+   margin:1%;
+   white-space:nowrap;
+        }
+                
+.cadre{
+  border-radius:20px;
+  border:1px solid burlywood;
+  display:flex;
+  justify-content:center;
+  background-color:beige;
+  margin-bottom:10px;
+  width:550px;
+      }
+      
+.cadre:hover{
+  box-shadow: rgba(101, 147, 220, 0.5) 0 8px 16px 0;
+}
+
+.shiny-input-container:not(.shiny-input-container-inline){
+  width: 500px;
+  display: flex;
+  gap: 3%;
+  margin-top: 4%;
+  margin-right: 8%;
+    } 
+    
+ .selectize-control{
+   width:142%;
+ }
+ 
+ .complexite{
+   width:76px;
+ }
+ 
+ #scroll_to_top {
+  /*position: absolute;*/
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  bottom: 30px;
+  right: 30px;
+  scroll-behavior: smooth;
+  opacity: 0.3;
+}
+
+.durete_fonciere{
+  color: red;
+  position:relative !important;
+}
+
+#fonciere{
+  position:fixed;
+  margin-top: 26px;
+}
+
+.outer{
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+#couche_slider {
+  position: absolute;
+  top: 102vh;
+  width: 100%;
+}
+
+#couche_slider > div {
+  position: absolute;
+  font-weight: bold;
+	padding: 0.5em;
+	border-radius: 100px;
+	border: 2px solid;
+	background-color: rgb(240,240,240);
+}
+
+#couche_slider > div:nth-child(2) {
+  position: absolute;
+  right: 5px;
+}
+
+#combobox {
+  position: absolute;
+  top:79vh;
+  left: 110px;
+  width: auto;
+  background-color:white;
+  padding:5px;
+  border-style: ridge;
+  cursor: move;
+  /* Fade out while not hovering */
+  opacity: 0.8;
+  zoom: 0.9;
+  transition: opacity 100ms 300ms ;
+}
+#combobox:hover {
+  /* Fade in while hovering */
+  opacity: 0.95;
+  transition-delay: 200ms;
+}
+
+.modal-body{
+  text-align: center;
+}
+
+html, body {
+	scroll-behavior:smooth;
+}
+
+#dynamique_territoriale-selectized{
+  width:40px;
+}
+
+.input-group-btn{
+	top: -3px;
+}
+
+.details {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+.summary {
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 4px;
+        margin: -10px -10px 10px -10px;
+        display: flex;
+        align-items: center;
+      }
+.summary:hover {
+        background-color: #e0e0e0;
+      }
+
+.summary .icon {
+        margin-right: 10px;
+        transition: transform 0.2s;
+      }
+      
+.summary.open .icon {
+        transform: rotate(90deg);
+      }
+      
+/* CSS for the popup */
+.popup {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+      }
+      
+.popup .popuptext {
+        visibility: hidden;
+        width: 600px;
+        height: 500px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;  /* Position the popup above the text */
+        left: 50%;
+        margin-left: -301px;
+      }
+      
+.popup .popuptext iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      
+.popup .popuptext::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+      }
+      
+.popup:hover .popuptext {
+        visibility: visible;
+        opacity: 1;
+      }
+
+
+@media only screen and (max-width:1300px) {
+.diagramme_circulaire{
+  height:180px;
+  width:190px !important;
+  margin-left: 20%;
+  margin-top: -9.8%;
+}
+  .radar{
+    height:300px;
+  width:425px !important;
+  margin-left: 10%;
+  margin-top: -8%!important;
+  }
+  
+  
+}

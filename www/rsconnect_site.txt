@@ -1,0 +1,146 @@
+rsconnect::deployApp("D:/Projets_Shiny/OFB_appli_web/",appTitle = "Site OFB")
+
+token:
+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
+
+token(21/08/2024):
+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
+
+
+
+https://cerema-med.shinyapps.io/projections_climatiques_nouvelle_aquitaine_2050/
+
+
+
+
+# Observer les groupes activés et ajuster les légendes
+  observe({
+    # leafletProxy("map") %>%
+    #  clearControls()%>%  # Nettoyer les légendes existantes
+    # addSidebyside(layerId = "sidecontrols",
+    #               rightId = "baseid",
+    #               leftId = "cartoid")
+    # Si la couche d'été est activée
+    if ("Température (en °C) en été à l'échelle Départementale" %in% input$map_groups) {
+      leafletProxy("map") %>%
+        clearControls()%>%  # Nettoyer les légendes existantes
+        addSidebyside(layerId = "sidecontrols",
+                      rightId = "baseid",
+                      leftId = "cartoid")%>%
+        # Ajout de la première légende
+        addLegend("bottomright",
+                  colors = c("#d9d9d9", "#ffffff", "#ffaaaa", "#ff5555", "#ff0000"),
+                  labels = c("de 20.5 à 21 inclus", "de 21 à 21.5 inclus", "de 21.5 à 22 inclus", "de 22 à 22.5 inclus", "de 22.5 à 23 inclus"),
+                  title = "Température estivale en °C",
+                  group = "Température (en °C) en été à l'échelle Départementale",
+                  opacity = 1,
+                  layerId = "legend1") %>%
+        addPolygons(data = departement_donnees,
+                    fillColor = ~pal_dpt_ete(departement_donnees$T_ete._haute_cat),
+                    weight = 2.5, fillOpacity = 0.65,
+                    label = labels_ete,
+                    labelOptions = labelOptions(style=list("border"="1px solid black","border-radius"="20px")),
+                    color = "black",
+                    group = "Température (en °C) en été à l'échelle Départementale",
+                    options = pathOptions(pane = "right")) %>%
+        # Ajout de la deuxième légende
+        addLegend("bottomleft",
+                  colors = c("#dcded5", "#f6ea96", "#f4bc1c", "#e5a748", "#f38319"),
+                  labels = c("de 18.0 à 18.5 inclus", "de 18.5 à 19 inclus", "de 19 à 19.5 inclus", "de 19.5 à 20 inclus", "de 20 à 20.5 inclus"),
+                  title = "Température estivale en °C",
+                  group = "Température (en °C) en été à l'échelle Départementale",
+                  opacity = 1,
+                  layerId = "legend2")%>%
+        addPolygons(data = departement_donnees,
+                    fillColor = ~pal_dpt_ete_ref(departement_donnees$T_ete_ref_cat),
+                    weight = 2.5, fillOpacity = 0.65,
+                    label = labels_ete_ref,
+                    labelOptions = labelOptions(style=list("border"="1px solid black","border-radius"="20px")),
+                    color = "black",
+                    group = "Température (en °C) en été à l'échelle Départementale",
+                    options = pathOptions(pane = "left"))
+    }
+    
+    # Si la couche d'automne est activée
+    else if ("Température (en °C) automnale à l'échelle Départementale" %in% input$map_groups) {
+      leafletProxy("map") %>%
+        clearControls()%>%  # Nettoyer les légendes existantes
+        addSidebyside(layerId = "sidecontrols",
+                      rightId = "baseid",
+                      leftId = "cartoid")%>%
+        # Ajout de la troisième légende
+        addLegend("bottomright",
+                  colors = c("#ffffff", "#eda166", "#cea42b", "#8c4309"),
+                  labels = c("de 13.5 à 14.5 inclus", "de 14.5 à 15.5 inclus", "de 15.5 à 16.5 inclus", "> 16.5"),
+                  title = "Température automnale en °C",
+                  group = "Température (en °C) automnale à l'échelle Départementale",
+                  opacity = 1,
+                  layerId = "legend3") %>%
+        addPolygons(data = departement_donnees,
+                    fillColor = ~pal_dpt_automne(departement_donnees$T_.Automne_haute_cat),
+                    weight = 2.5, fillOpacity = 0.65,
+                    label = labels_automne,
+                    labelOptions = labelOptions(style=list("border"="1px solid black","border-radius"="20px")),
+                    color = "black",
+                    group = "Température (en °C) automnale à l'échelle Départementale",
+                    options = pathOptions(pane = "right")) %>%
+        
+        # Ajout de la quatrième légende
+        addLegend("bottomleft",
+                  colors = c("#eee773", "#f5ea37", "#f7a424", "#f97311"),
+                  labels = c("de 10 à 11 inclus", "de 11 à 12 inclus", "de 12 à 13 inclus", "> 13"),
+                  title = "Température automnale en °C",
+                  group = "Température (en °C) automnale à l'échelle Départementale",
+                  opacity = 1,
+                  layerId = "legend4")%>%
+        addPolygons(data = departement_donnees,
+                    fillColor = ~pal_dpt_automne_ref(departement_donnees$T_.Automne_ref_cat),
+                    weight = 2.5, fillOpacity = 0.65,
+                    label = labels_automne_ref,
+                    labelOptions = labelOptions(style=list("border"="1px solid black","border-radius"="20px")),
+                    color = "black",
+                    group = "Température (en °C) automnale à l'échelle Départementale",
+                    options = pathOptions(pane = "left"))
+      
+    }
+    # Si la couche printemps est activée
+    else if("Température (en °C) au printemps à l'échelle Départementale" %in% input$map_groups){
+      leafletProxy("map") %>%
+        clearControls()%>%  # Nettoyer les légendes existantes
+        addSidebyside(layerId = "sidecontrols",
+                      rightId = "baseid",
+                      leftId = "cartoid")%>%
+        addLegend("bottomright",
+                  colors =c("#ffffff","#E6E6E6","#F6CED8","#F5A9F2","#D358F7","#5858FA"),
+                  labels = c("de 11.5 à 12 inclus","de 12 à 12.5 inclus","de 12.5 à 13.0 inclus","de 13.0 à 13.5 inclus","de 13.5 à 14.0 inclus","de 14.0 à 14.5 inclus"), 
+                  title = "Température printanière en °C ",
+                  group = "Température (en °C) au printemps à l'échelle Départementale",
+                  opacity = 1)%>%
+        addPolygons(data = departement_donnees,
+                    fillColor = ~pal_dpt_printemps(departement_donnees$T_printemps_haute_cat), #fill = F,
+                    weight = 2.5,
+                    fillOpacity = 0.65,
+                    label = labels_printemps,
+                    labelOptions = labelOptions(style=list("border"="1px solid black","border-radius"="20px")),
+                    color = "black",#label = departement_donnees$NOM,
+                    group = "Température (en °C) au printemps à l'échelle Départementale",
+                    options = pathOptions(pane = "right"))%>%
+        
+        addLegend("bottomleft",
+                  colors =c("#8ef110","#c5f110","#eef110","#f1be10","#f18e10","#f15810"),
+                  labels = c("de 9.2 à 9.8 inclus","de 9.8 à 10.4 inclus","de 10.4 à 11.0 inclus","de 11.0 à 11.6 inclus","de 11.6 à 12.2 inclus","> 12.2"), 
+                  title = "Température printanière en °C ",
+                  group = "Température (en °C) au printemps à l'échelle Départementale",
+                  opacity = 1)%>%
+        addPolygons(data = departement_donnees,
+                    fillColor = ~pal_dpt_printemps_ref(departement_donnees$T_printemps_ref_cat), #fill = F,
+                    weight = 2.5,
+                    fillOpacity = 0.65,
+                    label = labels_printemps_ref,
+                    labelOptions = labelOptions(style=list("border"="1px solid black","border-radius"="20px")),
+                    color = "black",#label = departement_donnees$NOM,
+                    group = "Température (en °C) au printemps à l'échelle Départementale",
+                    options = pathOptions(pane = "left"))
+      
+    }
+  })

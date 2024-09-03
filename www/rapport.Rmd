@@ -1,0 +1,104 @@
+---
+title: |
+  \vspace{-3.7cm}
+  \begin{center}
+    \begin{minipage}{0.45\textwidth}
+      \includegraphics[width=2in]{LogoCerema.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.2\textwidth}
+      \includegraphics[width=1in]{Republique-francaise.png}
+    \end{minipage}
+    \vspace{0.5cm} % Ajustez cet espace selon vos besoins
+    \begin{tcolorbox}[colframe=orange, colback=orange, boxrule=1pt, width=\textwidth, sharp corners]
+      \centering
+      \LARGE \textbf{Potentiel de mutabilité des friches}
+    \end{tcolorbox}
+  \end{center}
+output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    fig_caption: yes
+    extra_dependencies: ["tcolorbox", "xcolor"]
+header-includes:
+- \usepackage{fancyhdr}
+- \usepackage{geometry}
+- \pagestyle{fancy}
+- \usepackage{lipsum}
+- \usepackage{graphicx}
+- \usepackage{setspace}
+- \usepackage{hyperref}
+- \usepackage{ulem}
+- \AtBeginDocument{\setstretch{0.7}}
+- \rhead{\includegraphics[width=0.05\textwidth]{LogoCerema.png}}
+highlight: kate
+---
+\begin{center}
+\includegraphics[width=26cm, height=7cm]{www/friche_photo_test.jpg}
+\end{center}
+Nom de la friche : `r input$nom_friche`  
+Commune : `r input$commune`  
+
+
+# \textcolor[HTML]{3A4A98}{DURETÉ FONCIÈRE}
+
+## Caractéristiques physiques du foncier
+Superficie des parcelles : `r input$text_superficie`  
+Dégradation du bâti et des infrastructures : `r input$degradation`
+
+## Qualité des responsables 
+Qualité des responsables : `r input$proprietaire`  
+Copropriétaires : `r input$coproprietaire`  
+Complexité des partages de droit (Indivision, recherche d’héritiers) : `r input$partage_droits`
+
+## Pollution 
+Pollution (sols et bâtis) : `r input$pollution`
+
+## Sécurisation du site :
+Sécurisation du site : `r input$securisation`
+
+## Terrain clôturé :
+Terrain clôturé : `r input$terrain_cloture`
+
+## Accessibilité et desserte 
+Voie et desserte : `r input$voie_desserte`  
+Viabilisation du terrain : `r input$viabilisation`
+
+
+# \textcolor[HTML]{3A4A98}{RÉTENTION FONCIÈRE}
+
+Année de Naissance du propriétaire : `r input$naissance_proprietaire`  
+Multi-propriétés : `r input$multi_proprietes`  
+Valeur des marchés : `r input$valeur_marche`
+
+
+# \textcolor[HTML]{3A4A98}{ECOSYSTÈME}
+Végétation : `r input$vegetation`  
+Enjeux Biodiversité, Environnement : `r input$enjeux_biodiversite`
+
+
+# \textcolor[HTML]{3A4A98}{RÉGLEMENTATION}
+Enjeux Patrimoine, paysage : `r input$enjeux_patrimoine`  
+Zonage PLU : `r input$zonage_plu`  
+Enjeux Risques : `r input$enjeux_risques`
+
+
+# \textcolor[HTML]{3A4A98}{AVENIR}
+Entretien du site : `r input$entretien_site`  
+Occupation du site : `r input$occupation_site`  
+Besoins du territoire : `r input$besoins_territoire`  
+Volonté des élus locaux : `r input$volonte_elus`  
+Dynamique territoriale : `r input$dynamique_territoriale`      
+  
+
+# \textcolor[HTML]{3A4A98}{INDICE DE MUTABILITÉ} 
+Indice de mutabilité de la friche : `r paste(round(indice_mutabilite()), "%")`
+<div style="margin-bottom:15%;">
+```{r diagramme_kiviat, echo=FALSE,  out.width="65%", fig.align='center'}
+knitr::include_graphics("www/radar.png")
+```
+</div>
+
+
+
